@@ -1,4 +1,24 @@
 services:
+  - type: pserv
+    name: tms-mysql
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./docker/mysql/Dockerfile
+    autoDeploy: false
+    disk:
+      name: tms-mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
+    envVars:
+      - key: MYSQL_DATABASE
+        value: tms
+      - key: MYSQL_USER
+        value: tms
+      - key: MYSQL_PASSWORD
+        generateValue: true
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+
   - type: web
     name: tms-backend
     runtime: node
@@ -13,13 +33,19 @@ services:
         generateValue: true
       - key: DB_NAME
         value: tms
+      - key: DB_USER
+        value: tms
       - key: DB_PORT
         value: "3306"
       - key: DB_SSL
-        value: "true"
+        value: "false"
       - key: DB_HOST
-        sync: false
-      - key: DB_USER
-        sync: false
+        fromService:
+          name: tms-mysql
+          type: pserv
+          property: host
       - key: DB_PASSWORD
-        sync: false
+        fromService:
+          name: tms-mysql
+          type: pserv
+          envVarKey: MYSQL_PASSWORD

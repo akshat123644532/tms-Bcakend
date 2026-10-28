@@ -4,9 +4,7 @@ require("dotenv").config({
     path: path.join(__dirname, "../.env")
 });
 
-const useSsl = process.env.DB_SSL
-    ? process.env.DB_SSL === "true"
-    : process.env.NODE_ENV === "production";
+const useSsl = process.env.DB_SSL === "true";
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
