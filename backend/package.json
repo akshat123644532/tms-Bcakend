@@ -1,0 +1,8 @@
+{
+  "name": "tms-render-shim",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix ..",
+    "start": "node ../server.js"
+  }
+}
