@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: tms-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_NAME
+        value: tms
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_SSL
+        value: "true"
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false

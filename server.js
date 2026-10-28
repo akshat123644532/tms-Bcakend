@@ -3,7 +3,7 @@ require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const express = require("express");
 const cors = require("cors");
-const { ensureSchema } = require("../config/schema");
+const { ensureSchema } = require("./config/schema");
 const moduleRoutes = require("./routes/moduleRoutes");
 const userModuleAccessRoutes = require("./routes/userModuleAccessRoutes");
 const vehicleTypeRoutes = require("./routes/vehicleTypeRoutes");
@@ -25,8 +25,8 @@ const vehicleAssignmentRoutes = require("./routes/vehicleAssignmentRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes");
 const invoicePaymentRoutes = require("./routes/invoicePaymentRoutes");
 const invoicePaymentDeductionRoutes = require("./routes/invoicePaymentDeductionRoutes");
-const authController = require("../controllers/authController");
-const authMiddleware = require("../middleware/authMiddleware");
+const authController = require("./controllers/authController");
+const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
 
